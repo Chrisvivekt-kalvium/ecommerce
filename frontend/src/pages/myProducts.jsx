@@ -5,7 +5,7 @@ export default function MyProducts() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const email = "chris.vivek.s70@kalvium.community"; //mail which is present in mongodb
+    const email = "Pranav@gmail.com"; //mail which is present in mongodb
 
     useEffect(() => {
         fetch(`http://localhost:8000/api/v2/product/my-products?email=${email}`)

@@ -2,85 +2,76 @@ import React, { useState } from "react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 import axios from "axios";
 
-const CreateProduct =() =>{
-    const [image, setImages] = useState([]);
-    const [previewImages,setpreviewImages]=useState([]);
-    const [name,setName]=useState("");
-    const [description,setDescription]=useState("");
-    const [category,setCategory]=useState("");
-    const [tags,setTags]=useState("");
-    const [price,setPrice]=useState("");
-    const [stock,setStock]=useState("");
-    const [email,setEamil]=useState("");
-    
+const CreateProduct = () => {
+    const [images, setImages] = useState([]);
+    const [previewImages, setPreviewImages] = useState([]);
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [category, setCategory] = useState("");
+    const [tags, setTags] = useState("");
+    const [price, setPrice] = useState("");
+    const [stock, setStock] = useState("");
+    const [email, setEmail] = useState("");
 
     const categoriesData = [
-
-        {title: "Electronic"},
-        {title: "Fashion"},
-        {title: "Books"},
-        {title: "Home Application"},
+        { title: "Electronics" },
+        { title: "Fashion" },
+        { title: "Books" },
+        { title: "Home Appliances" },
     ];
 
-    const handleImageChange = (e) =>{
+    const handleImagesChange = (e) => {
         const files = Array.from(e.target.files);
-        setImages((prevImage) => prevImage.comcat(files));
 
-        const imagePreview = files.map((file)=>URL.createObjectURL(files));
-        setpreviewImages((prevImage) => prevImage.concat(imagePreview));
+        setImages((prevImages) => prevImages.concat(files));
+
+        const imagePreviews = files.map((file) => URL.createObjectURL(file));
+        setPreviewImages((prevPreviews) => prevPreviews.concat(imagePreviews));
     };
-    const handleSubmit = async(e)=>{
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        console.log("Hi")
 
-            const formData = new FormData();
-                formData.append("name",name);
-                formData.append("description",description);
-                formData.append("catergory",category);
-                formData.append("tags",tags.trim())
-                formData.append("price",price);
-                formData.append("stock",stock);
-                formData.append("email",email);
+        const formData = new FormData();
+        formData.append("name", name);
+        formData.append("description", description);
+        formData.append("category", category);
+        formData.append("tags", tags);
+        formData.append("price", price);
+        formData.append("stock", stock);
+        formData.append("email", email);
 
-                    image.forEach((image,index)=>{
-                        console.log(`Appending image ${(index + 1)}`,image.name);
-                        formData.append("images[]",image);
-                        
-                        });
+        images.forEach((image) => {
+            formData.append("images", image);
+        });
 
+        try {
+            const response = await axios.post("http://localhost:8000/api/v2/product/create-product", formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            });
 
-                        console.log("FormData before sending...");
-                        formData.forEach((value,key)=>{
-                            console.log(key,value);
-                        });
-                        
-                        try{
-                            const response = await axios.post("http://localhost:8080/api/v2/product/create-product",formData,
-                            {
-                                headers : {
-                                    "content-Type": "multipart/form-data",
-                                },
-                            }
-                        )
-                        
-                        if(response.status === 201){
-                            alert("product created successfully");
-                            setImages([]);
-                            setpreviewImages([]);
-                            setName("");
-                            setDescription("");
-                            setCategory("");
-                            setTags("");
-                            setPrice("");
-                            setStock("");
-                            setEamil("");
-                        }
-                    } catch(err){
-                            console.error("Error Creating product",err.response?.data || err.message);
-                            alert("Failed to create product.Please check the data and try again.");
-                        }
-
-                    
+            if (response.status === 201) {
+                alert("Product created successfully!");
+                setImages([]);
+                setPreviewImages([]);
+                setName("");
+                setDescription("");
+                setCategory("");
+                setTags("");
+                setPrice("");
+                setStock("");
+                setEmail("");
+            }
+        } catch (err) {
+            console.error("Error creating product:", err);
+            alert("Failed to create product. Please check the data and try again.");
+        }
     };
+
+
     return (
         <div className="w-[90%] max-w-[500px] bg-white shadow h-auto rounded-[4px] p-4 mx-auto">
             <h5 className="text-[24px] font-semibold text-center">Create Product</h5>
@@ -142,7 +133,7 @@ const CreateProduct =() =>{
                         ))}
                     </select>
                 </div>
-<div className="mt-4">
+                <div className="mt-4">
                     <label className="pb-1 block">Tags</label>
                     <input
                         type="text"
@@ -188,7 +179,7 @@ const CreateProduct =() =>{
                         id="upload"
                         className="hidden"
                         multiple
-                        onChange={handleImageChange}
+                        onChange={handleImagesChange}
                         required
                     />
                     <label htmlFor="upload" className="cursor-pointer">
