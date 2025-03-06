@@ -1,7 +1,7 @@
 // Cart.jsx
 import React, { useState, useEffect } from 'react';
-import CartProduct from '../components/auth/CartProduct';
-import Nav from '../components/auth/nav';
+import CartProduct from '../components/auth/cartProducts';
+import Nav from '../components/auth/Navbar/navbar';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 
 const Cart = () => {

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { IoIosAdd, IoIosRemove } from "react-icons/io";
 import { Loader, AlertCircle } from "lucide-react";
-import Nav from '../components/auth/nav';
+import Nav from '../components/auth/Navbar/navbar';
 
 
 

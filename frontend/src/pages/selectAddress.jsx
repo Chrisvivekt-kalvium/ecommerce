@@ -1,6 +1,6 @@
 // SelectAddress.jsx
 import React, { useState, useEffect } from 'react';
-import Nav from '../components/auth/nav'; // Ensure the path is correct and component name matches
+import Nav from '../components/auth/Navbar/navbar';
 import { useNavigate } from 'react-router-dom';
 
 // Optionally, if you have a context or a way to get the authenticated user's email, import it
