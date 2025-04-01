@@ -5,7 +5,7 @@ import axios from "axios";
 import Nav from "../components/auth/nav";
 import { useLocation, useNavigate } from "react-router-dom";
 // 1) Import PayPalScriptProvider & PayPalButtons
-import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";//milestone_30 completed
 const OrderConfirmation = () => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -205,7 +205,7 @@ const OrderConfirmation = () => {
                   <PayPalScriptProvider
                     options={{
                       "client-id":
-                        "AYMI_d7yjDOJz1X7myS5Rfm-ynuBdZHtPhtOxfpPTWH2ggh4VneSrGWKF3YQzn43azyq6RzwGChtf5MI",
+                        "AVKI4VhUnvDNW_uODpZF50mOILBI72e8o_kVhEfa9BU4meCwzgkLcQZ9RkwznTeD5-LBTYF7Rm_vYR6j",
                     }}
                   >
                     <PayPalButtons
