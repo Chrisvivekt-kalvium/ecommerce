@@ -11,7 +11,7 @@ const OrderConfirmation = () => {
   const navigate = useNavigate();
   const { addressId, email } = location.state || {};
   const [selectedAddress, setSelectedAddress] = useState(null);
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState([]); 
   const [totalPrice, setTotalPrice] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -205,7 +205,7 @@ const OrderConfirmation = () => {
                   <PayPalScriptProvider
                     options={{
                       "client-id":
-                        "AVKI4VhUnvDNW_uODpZF50mOILBI72e8o_kVhEfa9BU4meCwzgkLcQZ9RkwznTeD5-LBTYF7Rm_vYR6j",
+                        "AYMI_d7yjDOJz1X7myS5Rfm-ynuBdZHtPhtOxfpPTWH2ggh4VneSrGWKF3YQzn43azyq6RzwGChtf5MI",
                     }}
                   >
                     <PayPalButtons
